@@ -1,5 +1,6 @@
 # Weather Report
 * API based weather stats
+* OpenWeatherMap API has been used
 * Takes location (city & country) as user input
 * First API Request retrieves the latitude and longitude of the location 
 * Second API Request retrives the weather stats for the given latitude and longitude
