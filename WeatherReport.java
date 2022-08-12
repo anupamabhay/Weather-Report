@@ -96,9 +96,11 @@ public class WeatherReport {
         System.out.print((char)27 +"[4mWeather Report");
         System.out.println((char)27 +"[0m"); //reset underline property
         PrintStream out = new PrintStream( System.out, true, StandardCharsets.UTF_8 );
-        out.println("Temp: " + temperature + "\u00B0" + "C" + " (Min: " + temperatureMin + "\u00B0" + "C" + ", Max: " + temperatureMax + "\u00B0" + "C" + ")"
+        out.println("Sky: " + sky
+                + "\nTemp: " + temperature + "\u00B0" + "C" + " (Min: " + temperatureMin + "\u00B0" + "C" + ", Max: " + temperatureMax + "\u00B0" + "C" + ")"
                 + "\nFeels like: " + feelsLike + "\u00B0" + "C"
                 + "\nHumidity: " + humidity + "%"
                 + "\nWind Speed: " + windSpeed + "m/s" + ", Gust: " + windGust + "m/s");
+    }
     }
 }
