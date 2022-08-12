@@ -54,7 +54,7 @@ public class WeatherReport {
         //Print underlined "Location"
         System.out.print((char)27 +"[4mLocation");
         System.out.println((char)27 +"[0m"); //Reset underline property
-        System.out.println("City: " + location + "," + countryCode + "\n" + "Latitude: " + latitude + ", " + "Longitutde: " + longitude + "\n");
+        System.out.println("City: " + location + "," + countryCode + "\n" + "Latitude: " + latitude + ", " + "Longitude: " + longitude + "\n");
 
         //Request and Response for the weather stats
         Request requestWeather = new Request.Builder()
