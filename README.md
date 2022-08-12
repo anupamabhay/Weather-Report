@@ -7,4 +7,4 @@
 * Displays stats such as Sky (clear/clouds/etc), temperature (along with both min and max temp), feels like, humidity, wind speed and gust
 
 ## Output/Result
-![image_2022-08-13_01-09-42](https://user-images.githubusercontent.com/24754580/184432212-8bc9b917-696a-4c69-9daf-336398c1a85b.png)
+![image](https://user-images.githubusercontent.com/24754580/184434973-942ef3a1-b473-47e5-9b8a-3d2542b389f8.png)
