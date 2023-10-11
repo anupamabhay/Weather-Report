@@ -15,7 +15,7 @@ public class WeatherReport {
         //api
         var myApi = "YOUR_API_KEY";
         //base url
-        final var url = "http:api.openweathermap.org/";
+        final var url = "https:api.openweathermap.org/";
         //Build new client for api calls
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
