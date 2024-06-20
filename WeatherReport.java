@@ -16,7 +16,7 @@ public class WeatherReport {
         var myApi = "YOUR_API_KEY";
         //base url
         final var url = "https:api.openweathermap.org/";
-        //Build new client for api calls
+        //create an instance of OkHttpsClient for all the API calls
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         //Code to get the latitude and longitude
@@ -24,28 +24,32 @@ public class WeatherReport {
         String city, country;
         System.out.println("Enter the name of the city: ");
         city = scanner.nextLine();
-        city = city.replaceAll("\\s+","+");
+        //replace all whitespaces with '+'
+        city = city.replaceAll("\\s+","+"); 
         System.out.println("Enter the name of the country: ");
         country = scanner.next();
         //Request for latitude & longitude
         Request requestGeolocation = new Request.Builder()
                 .url(url+"geo/1.0/direct?q="+city+","+country+"&limit=1&appid="+myApi)
                 .build();
-        Response responseGeolocation = null;
+        //response object (initialized with null)
+        Response responseGeolocation = null; 
         String messageGeolocation = "";
         try{
-            responseGeolocation = client.newCall(requestGeolocation).execute();
+            //making the API call to get latitude and longitude and storing it into the response object
+            responseGeolocation = client.newCall(requestGeolocation).execute(); 
+            //storing the response message as a string
             messageGeolocation = Objects.requireNonNull(responseGeolocation.body()).string();
         }
         catch (Exception e){
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-        //Parse response message as JsonArray
+        //Parsing response message as JsonArray
         JsonArray jArrayGeolocation = JsonParser.parseString(messageGeolocation).getAsJsonArray();
-        //Get the JsonArray as a JsonObject to access key-value entries
+        //Storing the first value of jArrayGeolocation as an object
         JsonObject jObjectGeolocation = (JsonObject) jArrayGeolocation.get(0);
-        //Store the values of latitude, longitude & country code as String
+        //Storing the values of latitude, longitude & country code as String
         String location = jObjectGeolocation.get("name").toString();
         String latitude = jObjectGeolocation.get("lat").toString();
         String longitude = jObjectGeolocation.get("lon").toString();
@@ -70,16 +74,16 @@ public class WeatherReport {
             e.printStackTrace();
         }
         //System.out.println(messageWeather); //prints the response message (object)
-        //Parse response message as JsonObject
+        //Parsing response message as JsonObject
         JsonObject jObjectWeather = JsonParser.parseString(messageWeather).getAsJsonObject();
-        //Grab the key:"weather" from jObjectWeather as JsonArray
+        //Accessing the key:"weather" from jObjectWeather as JsonArray
         JsonArray jArraySky = jObjectWeather.get("weather").getAsJsonArray();
-        //Get the JsonArray as a JsonObject to access key-value entries
+        //Storing the first value of jArraySky as an object
         JsonObject jsonObjectSky = (JsonObject) jArraySky.get(0);
-        //Get the value from key:"description" as a String
+        //Getting the value from key:"description" as a String
         String sky = jsonObjectSky.get("description").toString();
 
-        //Grab the key:"main" to access the object with keys:"temp","feel_like", etc
+        //Getting the key:"main" to access the object with keys:"temp","feel_like", etc
         JsonObject jObjectTempStats = jObjectWeather.get("main").getAsJsonObject();
         String temperature = jObjectTempStats.get("temp").toString();
         String feelsLike = jObjectTempStats.get("feels_like").toString();
@@ -87,12 +91,12 @@ public class WeatherReport {
         String temperatureMax = jObjectTempStats.get("temp_max").toString();
         String humidity = jObjectTempStats.get("humidity").toString();
 
-        //Grab the key:"wind" to access the object with keys:"speed" & "gust"
+        //Grabbing the key:"wind" to access the object with keys:"speed" & "gust"
         JsonObject jObjectWindStats = jObjectWeather.get("wind").getAsJsonObject();
         String windSpeed = jObjectWindStats.get("speed").toString();
         String windGust = jObjectWindStats.get("gust").toString();
 
-        //Print underlined "Weather Report"
+        //Printing underlined "Weather Report"
         System.out.print((char)27 +"[4mWeather Report");
         System.out.println((char)27 +"[0m"); //reset underline property
         PrintStream out = new PrintStream( System.out, true, StandardCharsets.UTF_8 );
